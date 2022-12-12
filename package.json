@@ -6,6 +6,9 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "author": "Vitor Viana",
+  "engines": {
+    "node": "16.6.2"
+  },
   "scripts": {
     "postinstall": "link-module-alias",
     "_preinstall": "link-module-alias clean",
