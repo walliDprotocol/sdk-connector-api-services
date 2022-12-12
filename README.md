@@ -1,6 +1,4 @@
-# whitelist-dapp-backend
-
-Backend REST api for supporting operations for whitelist NFT operation. Supports oAuth routes for twitter and discord, logic for search twitter features retweets, follows etc.
+# Verification-connector
 
 ## environment variables
 
