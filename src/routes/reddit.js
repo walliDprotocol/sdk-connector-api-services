@@ -5,15 +5,16 @@ const axios = require("axios");
 const router = new express.Router();
 var queryString = require("querystring");
 
-console.log("github clientID: ", process.env.REDDIT_CLIEND_ID);
-console.log("github GOOGLE_CLIENT_SECRET: ", process.env.REDDIT_CLIENT_SECRET);
+console.log("reddit clientID: ", process.env.REDDIT_CLIEND_ID);
+console.log("reddit secret: ", process.env.REDDIT_CLIENT_SECRET);
 
 const clientId = process.env.REDDIT_CLIEND_ID;
 const clientSecret = process.env.REDDIT_CLIENT_SECRET;
 //const redirectUri = "https://sdk-iframe.herokuapp.com";
 
 /**
- * // https://tomanagle.medium.com/google-oauth-with-node-js-4bff90180fe6
+ * Samples
+ * https://fusebit.io/blog/reddit-oauth/?utm_source=www.google.com&utm_medium=referral&utm_campaign=none
  *
  */
 router.get("/requestURL", async (request, response) => {
