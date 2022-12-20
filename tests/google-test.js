@@ -1,18 +1,17 @@
 let { google } = require("googleapis");
 const axios = require("axios");
 
-const GOOGLE_CLIENT_ID =
-  "708942184051-jiv7km3e8ujg2mn3d7s9pcjvk47avi1s.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
+const GOOGLE_CLIENT_ID = "";
+const GOOGLE_CLIENT_SECRET = "";
 
 const oauth2Client = new google.auth.OAuth2(
   GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET,
+  GOOGLE_CLIENT_SECRET
   /*
    * This is where Google will redirect the user after they
    * give permission to your application
    */
-  "https://sdk-iframe.herokuapp.com"
+  //"https://sdk-iframe.herokuapp.com"
 );
 
 // get Google Auth URL
@@ -59,7 +58,7 @@ async function getGoogleUser({ code }) {
 }
 
 // request url
-//console.log("Get Google URL : ", getGoogleAuthURL());
+console.log("Get Google URL : ", getGoogleAuthURL());
 
 // 4%2F0AWgavdcKwZ9Q6Jq_no-nkUgIfxODaCEOU2tzr0U9XXw8LS5PkG6K-OkTWGT0b3cThFGDAw
 
