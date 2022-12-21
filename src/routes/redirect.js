@@ -20,11 +20,6 @@ const { TwitterApi } = require("twitter-api-v2");
 // https://discord.com/api/oauth2/authorize?response_type=token&client_id=947877511910527066&state=15773059ghq9183habn&scope=identify
 
 // https://discord.com/api/oauth2/authorize?client_id=947877511910527066&redirect_uri=http%3A%2F%2F127.0.0.1%3A9000&response_type=code&scope=identify%20guilds
-let CLIENT_SECRET = process.env.DISCORD_SECRET;
-const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-const DISCORD_REDIRECT = process.env.DISCORD_REDIRECT;
-
-console.log("DISCORD DISCORD_SECRET ", CLIENT_SECRET);
 
 // https://github.com/feross/login-with-twitter
 // https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter#Browser
@@ -124,45 +119,6 @@ router.post("/twitter", async (request, response) => {
     });
   } catch (ex) {
     console.error("Error twitter callback ", ex);
-    response.status(500).json({ error: ex });
-  }
-});
-
-// https://discord.com/developers/docs/topics/oauth2
-// code: "query code",
-// 	scope: "identify guilds",
-// grantType: "authorization_code",
-router.post("/authcode/discord", async (request, response) => {
-  try {
-    console.log("Get auth code discord ", request.body.code);
-    if (!(request.body && request.body.code)) {
-      throw "You should supply code!";
-    }
-
-    const oauthDiscord = "https://discord.com/api/oauth2/token";
-
-    const headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
-    };
-
-    let data = await axios.post(
-      oauthDiscord,
-      querystring.stringify({
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        grant_type: "authorization_code",
-        code: request.body.code,
-        redirect_uri: DISCORD_REDIRECT,
-      }),
-      {
-        headers: headers,
-      }
-    );
-
-    console.log("Data from discord auth : ", data.data);
-    response.json(data.data);
-  } catch (ex) {
-    console.error("/login/discord ", ex);
     response.status(500).json({ error: ex });
   }
 });
