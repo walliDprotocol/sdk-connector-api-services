@@ -26,16 +26,17 @@ router.get("/requestURL", async (request, response) => {
     const stringifiedParams = queryString.stringify({
       client_id: clientId,
       redirect_uri: request.query.redirectUrl,
-      scope: ["email", "user_friends"].join(","), // comma seperated string
+      // r_member_social
+      scope: ["r_liteprofile", "r_emailaddress"].join(" "), // comma seperated string
       response_type: "code",
-      auth_type: "rerequest",
-      display: "popup",
+      state: "rerequest",
     });
 
-    const facebookLoginUrl = `https://www.facebook.com/v7.0/dialog/oauth?${stringifiedParams}`;
+    const linkdinUrl = `https://www.linkedin.com/oauth/v2/authorization?${stringifiedParams}`;
+
     response.json({ redirectURL: authUrl });
   } catch (ex) {
-    console.error("/facebook/requestURL/", ex);
+    console.error("/linkedin/requestURL/", ex);
     response.status(500).json({ error: ex });
   }
 });
