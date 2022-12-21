@@ -2,18 +2,17 @@
 
 const express = require("express");
 const getAppInfo = require("$core-services/getAppInfo");
-const {
-  deleteTodo,
-  updateTodo,
-  getTodo,
-  createTodo,
-} = require("$services/todo");
 
 const router = new express.Router();
 const axios = require("axios");
 var querystring = require("querystring");
 
 let callbackURL = "https://sdk-iframe.herokuapp.com";
+
+console.log("facebook clientID: ", process.env.FACEBOOK_CLIEND_ID);
+console.log("facebook secret: ", process.env.FACEBOOK_CLIENT_SECRET);
+const clientId = process.env.FACEBOOK_CLIEND_ID;
+const clientSecret = process.env.FACEBOOK_CLIENT_SECRET;
 
 router.get("/requestURL", async (request, response) => {
   let authUrl =
@@ -54,8 +53,8 @@ router.post("/authcode", async (request, response) => {
     let data = await axios.post(
       oauthDiscord,
       querystring.stringify({
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
+        client_id: clientId,
+        client_secret: clientSecret,
         grant_type: "authorization_code",
         code: request.body.code,
         redirect_uri: DISCORD_REDIRECT,

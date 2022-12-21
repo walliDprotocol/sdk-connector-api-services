@@ -7,7 +7,6 @@ var queryString = require("querystring");
 
 console.log("facebook clientID: ", process.env.FACEBOOK_CLIEND_ID);
 console.log("facebook secret: ", process.env.FACEBOOK_CLIENT_SECRET);
-
 const clientId = process.env.FACEBOOK_CLIEND_ID;
 const clientSecret = process.env.FACEBOOK_CLIENT_SECRET;
 //const redirectUri = "https://sdk-iframe.herokuapp.com";
