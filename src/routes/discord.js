@@ -9,10 +9,10 @@ var querystring = require("querystring");
 
 let callbackURL = "https://sdk-iframe.herokuapp.com";
 
-console.log("facebook clientID: ", process.env.FACEBOOK_CLIEND_ID);
-console.log("facebook secret: ", process.env.FACEBOOK_CLIENT_SECRET);
-const clientId = process.env.FACEBOOK_CLIEND_ID;
-const clientSecret = process.env.FACEBOOK_CLIENT_SECRET;
+console.log("discord clientID: ", process.env.DISCORD_CLIENT_ID);
+console.log("discord secret: ", process.env.DISCORD_CLIENT_SECRET);
+const clientId = process.env.DISCORD_CLIENT_ID;
+const clientSecret = process.env.DISCORD_CLIENT_SECRET;
 
 router.get("/requestURL", async (request, response) => {
   let authUrl =
