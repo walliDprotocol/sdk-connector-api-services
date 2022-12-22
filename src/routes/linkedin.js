@@ -26,16 +26,17 @@ router.get("/requestURL", async (request, response) => {
       throw "You should supply redirectUrl!";
     }
 
-    const DURATION = "permanent";
-    const SCOPE = "identity edit flair history read vote wikiread wikiedit";
-    const REDIRECT_URI = request.query.redirectUrl;
-    const RANDOM_STRING = "randomestringhere";
-    const RESPONSE_TYPE = "code";
-    const CLIENT_ID = clientId;
+    const stringifiedParams = queryString.stringify({
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      //r_member_social
+      scope: ["r_liteprofile", "r_emailaddress"].join(" "), // comma seperated string
+      response_type: "code",
+      state: "rerequest",
+    });
 
-    const authUrl = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&state=${RANDOM_STRING}&redirect_uri=${REDIRECT_URI}&duration=${DURATION}&scope=${SCOPE}`;
-
-    response.json({ redirectURL: authUrl });
+    const linkdinUrl = `https://www.linkedin.com/oauth/v2/authorization?${stringifiedParams}`;
+    response.json({ redirectURL: linkdinUrl });
   } catch (ex) {
     console.error("/reddit/requestURL/", ex);
     response.status(500).json({ error: ex });
