@@ -31,7 +31,7 @@ router.get("/requestURL", async (request, response) => {
       state: "rerequest",
     });
 
-    const linkdinUrl = `https://www.linkedin.com/oauth/v2/authorization?${stringifiedParams}`;
+    const authUrl = `https://www.linkedin.com/oauth/v2/authorization?${stringifiedParams}`;
 
     response.json({ redirectURL: authUrl });
   } catch (ex) {
