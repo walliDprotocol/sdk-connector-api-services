@@ -1,6 +1,7 @@
 const clientId = "";
 const clientSecret = "";
 const redirectUri = "https://sdk-iframe.herokuapp.com/";
+//const redirectUri = "http://localhost:8080";
 
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 const axios = require("axios");
@@ -10,7 +11,8 @@ let getAuthUrl = function () {
   const stringifiedParams = queryString.stringify({
     client_id: clientId,
     redirect_uri: redirectUri,
-    scope: ["r_liteprofile", "r_emailaddress", "r_member_social"].join(" "), // comma seperated string
+    //scope: ["r_liteprofile", "r_emailaddress", "r_member_social"].join(" "), // comma seperated string
+    scope: ["r_liteprofile", "r_emailaddress"].join(" "), // comma seperated string
     response_type: "code",
     state: "rerequest",
   });
@@ -73,8 +75,8 @@ let getUserTokensAndData = async function (code) {
 getAuthUrl();
 
 let code =
-  "AQTmsJZX3Q37yZHIjJ_OQI4mgXZoKCZI6oWnIcjIbdy4FDCmQRBAqEjf68adahQWrdb3hwt_0MTXqpxGqC40CvPGANSrfgMXfovv1qVYt28rAytgF85nSlEC_Pe6YTB5OUMAuS4eFs7fzy8i-fJDSf3htNXmvv3w5b75XNudBrk60SPnKmV-kCV4RBVkT-_cWVA1-HXX60OFCD-tEhA";
-console.log("code : ", decodeURIComponent(code));
+  "AQS1JRWHlZDUFYpQuKijYezWRt-24aFpBdpchnlddSRtT_EAPRAIklpjC5uCQeorUT2-GSgDPa8H69n0VAUhryTHOLIha65CIBjlvO_mfwhFGh3vnW4KRTGpVUiX-bySYuXGWbsMzfgb1-E4qn3TqRcQc066woRPxZQA_FOlWtNOpgQgE2pEhblHioqxWELlWsqFMn3TT95WWpcPrBo";
+//console.log("code : ", decodeURIComponent(code));
 async function run() {
   console.log(
     "gihub user ; ",

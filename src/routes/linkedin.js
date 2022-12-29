@@ -85,11 +85,10 @@ router.post("/authcode", async (request, response) => {
     });
 
     console.log("User info ", userData.data);
-
     response.json({ userInfo: userData.data, tokenInfo: tokenInfo });
   } catch (ex) {
-    console.error("/login/reddit ", ex);
-    response.status(500).json({ error: ex });
+    console.error("/login/linkedin ", ex);
+    response.status(500).json({ error: "error on linkedin!" });
   }
 });
 
