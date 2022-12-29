@@ -59,7 +59,7 @@ router.post("/authcode", async (request, response) => {
         client_id: clientId,
         client_secret: clientSecret,
         redirect_uri: request.body.redirectUrl,
-        code,
+        code: request.body.code,
       },
     });
     console.log("facebook oauth tokens : ", data); // { access_token, token_type, expires_in }
