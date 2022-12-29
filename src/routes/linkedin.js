@@ -28,7 +28,7 @@ router.get("/requestURL", async (request, response) => {
 
     const stringifiedParams = queryString.stringify({
       client_id: clientId,
-      redirect_uri: redirectUri,
+      redirect_uri: request.query.redirectUrl,
       //r_member_social
       scope: ["r_liteprofile", "r_emailaddress"].join(" "), // comma seperated string
       response_type: "code",
