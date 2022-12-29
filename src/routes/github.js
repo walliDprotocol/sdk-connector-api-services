@@ -69,7 +69,7 @@ router.post("/authcode", async (request, response) => {
     console.log("token data :", queryData.access_token);
 
     //Use the access token to authenticate requests to the GitHub API
-    user = await axios.get("https://api.github.com/user", {
+    let user = await axios.get("https://api.github.com/user", {
       headers: {
         Authorization: "token " + queryData.access_token,
         "User-Agent": "WalliD SDK Request",
