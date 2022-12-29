@@ -1,7 +1,7 @@
 const clientId = "";
 const clientSecret = "";
 //const redirectUri = "https://sdk-iframe.herokuapp.com";
-const redirectUri = "http://localhost:8080";
+const redirectUri = "http://localhost:8080/";
 const axios = require("axios");
 var queryString = require("querystring");
 
@@ -114,7 +114,7 @@ let getUserTokensAndData = async function (code) {
 
 //getAuthUrl();
 
-let code = "31b3656c2d41ead03745";
+let code = "809ba1d9a78a7c50b411";
 async function run() {
   console.log("gihub user ; ", await getUserTokensAndData(code));
 }

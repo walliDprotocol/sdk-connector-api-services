@@ -5,11 +5,10 @@ const getAppInfo = require("$core-services/getAppInfo");
 let { google } = require("googleapis");
 const axios = require("axios");
 const router = new express.Router();
-var querystring = require("querystring");
 var queryString = require("querystring");
 
 console.log("github clientID: ", process.env.GITHUB_CLIENT_ID);
-console.log("github GOOGLE_CLIENT_SECRET: ", process.env.GITHUB_CLIENT_SECRET);
+console.log("github secret : ", process.env.GITHUB_CLIENT_SECRET);
 
 const clientId = process.env.GITHUB_CLIENT_ID;
 const clientSecret = process.env.GITHUB_CLIENT_SECRET;
@@ -46,6 +45,7 @@ router.get("/requestURL", async (request, response) => {
 router.post("/authcode", async (request, response) => {
   try {
     console.log("Get auth code discord ", request.body.code);
+    let user = {};
     if (!(request.body && request.body.code)) {
       throw "You should supply code!";
     }
@@ -69,14 +69,15 @@ router.post("/authcode", async (request, response) => {
     console.log("token data :", queryData.access_token);
 
     //Use the access token to authenticate requests to the GitHub API
-    let user = await axios.get("https://api.github.com/user", {
+    user = await axios.get("https://api.github.com/user", {
       headers: {
         Authorization: "token " + queryData.access_token,
         "User-Agent": "WalliD SDK Request",
       },
     });
 
-    response.json({ userInfo: user, tokenInfo: {} });
+    console.log("user data : ", user.data);
+    response.json({ userInfo: user.data, tokenInfo: {} });
   } catch (ex) {
     console.error("/login/github ", ex);
     response.status(500).json({ error: ex });
