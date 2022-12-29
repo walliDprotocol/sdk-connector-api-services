@@ -35,7 +35,7 @@ router.get("/requestURL", async (request, response) => {
 
     response.json({ redirectURL: authUrl });
   } catch (ex) {
-    console.error("/linkedin/requestURL/", ex);
+    console.error("/facebook/requestURL/", ex);
     response.status(500).json({ error: ex });
   }
 });
@@ -79,7 +79,7 @@ router.post("/authcode", async (request, response) => {
 
     console.log("User info ", userData.data);
 
-    response.json({ userInfo: userData, tokenInfo: tokenInfo });
+    response.json({ userInfo: userData.data, tokenInfo: tokenInfo });
   } catch (ex) {
     console.error("/login/reddit ", ex);
     response.status(500).json({ error: ex });

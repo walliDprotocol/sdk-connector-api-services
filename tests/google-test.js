@@ -6,12 +6,12 @@ const GOOGLE_CLIENT_SECRET = "";
 
 const oauth2Client = new google.auth.OAuth2(
   GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET
+  GOOGLE_CLIENT_SECRET,
   /*
    * This is where Google will redirect the user after they
    * give permission to your application
    */
-  //"https://sdk-iframe.herokuapp.com"
+  "https://sdk-iframe.herokuapp.com"
 );
 
 // get Google Auth URL
@@ -58,14 +58,15 @@ async function getGoogleUser({ code }) {
 }
 
 // request url
-console.log("Get Google URL : ", getGoogleAuthURL());
+//console.log("Get Google URL : ", getGoogleAuthURL());
 
 // 4%2F0AWgavdcKwZ9Q6Jq_no-nkUgIfxODaCEOU2tzr0U9XXw8LS5PkG6K-OkTWGT0b3cThFGDAw
 
 // get google user
-let code =
+let code = decodeURIComponent(
   //"4/0AWgavdeqKrSoXRV5lVv1GzTK3-opHS3YZPh4E4z0BucFXS8hsHCLjbD50N4r-nw1OW3M1w";
-  "4%2F0AWgavdcKwZ9Q6Jq_no-nkUgIfxODaCEOU2tzr0U9XXw8LS5PkG6K-OkTWGT0b3cThFGDAw";
+  "4%2F0AWgavdfLvZeLYou_LBFT9wTjqzc-fhWEPJIuBzrmLXnzLnk_zjreGnCmtLzrzCSjLuSKkw"
+);
 console.log("decoded uri ", decodeURIComponent(code));
 
 async function run() {
@@ -73,4 +74,4 @@ async function run() {
   console.log("Value : ", a);
 }
 
-// run();
+run();

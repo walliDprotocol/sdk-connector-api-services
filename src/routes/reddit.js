@@ -80,7 +80,8 @@ router.post("/authcode", async (request, response) => {
       },
     });
 
-    response.json({ userInfo: userData, tokenInfo: tokenInfo });
+    console.log("reddit user data ", userData.data);
+    response.json({ userInfo: userData.data, tokenInfo: tokenInfo });
   } catch (ex) {
     console.error("/login/reddit ", ex);
     response.status(500).json({ error: ex });

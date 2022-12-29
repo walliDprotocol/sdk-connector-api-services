@@ -55,14 +55,18 @@ router.post("/authcode", async (request, response) => {
     if (!(request.body && request.body.code)) {
       throw "You should supply code!";
     }
+    if (!(request.body && request.body.redirectUrl)) {
+      throw "You should supply redirectUrl!";
+    }
 
     const oauth2Client = new google.auth.OAuth2(
       GOOGLE_CLIENT_ID,
-      GOOGLE_CLIENT_SECRET
+      GOOGLE_CLIENT_SECRET,
+      request.query.redirectUrl
     );
 
-    console.log("Get google user ", code);
-    const { tokens } = await oauth2Client.getToken(code);
+    console.log("Get google user ", request.body.code);
+    const { tokens } = await oauth2Client.getToken(request.body.code);
     //console.log("Tokens : ", tokens);
     // Fetch the user's profile with the access token and bearer
     const googleUser = await axios
@@ -79,7 +83,8 @@ router.post("/authcode", async (request, response) => {
         throw new Error(error.message);
       });
 
-    response.json({ userInfo: googleUser, tokenInfo: tokens });
+    console.log("google user data : ", googleUser.data);
+    response.json({ userInfo: googleUser.data, tokenInfo: tokens });
   } catch (ex) {
     console.error("/login/discord ", ex);
     response.status(500).json({ error: ex });
