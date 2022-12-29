@@ -25,13 +25,13 @@ router.get("/requestURL", async (request, response) => {
     const stringifiedParams = queryString.stringify({
       client_id: clientId,
       redirect_uri: request.query.redirectUrl,
-      // r_member_social
-      scope: ["r_liteprofile", "r_emailaddress"].join(" "), // comma seperated string
+      scope: ["email", "user_friends"].join(","), // comma seperated string
       response_type: "code",
-      state: "rerequest",
+      auth_type: "rerequest",
+      display: "popup",
     });
 
-    const authUrl = `https://www.linkedin.com/oauth/v2/authorization?${stringifiedParams}`;
+    const authUrl = `https://www.facebook.com/v7.0/dialog/oauth?${stringifiedParams}`;
 
     response.json({ redirectURL: authUrl });
   } catch (ex) {
