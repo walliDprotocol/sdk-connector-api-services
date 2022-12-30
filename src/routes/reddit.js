@@ -90,4 +90,21 @@ router.post("/authcode", async (request, response) => {
   }
 });
 
+router.post("/footprint", async (request, response) => {
+  try {
+    console.log("Get social info from reddit ", request.body.tokens);
+    if (!(request.body && request.body.tokens)) {
+      throw "You should supply tokens!";
+    }
+
+    response.json({
+      friends: [],
+      posts: [],
+    });
+  } catch (ex) {
+    console.error("/footprint/reddit ", ex);
+    response.status(500).json({ error: ex });
+  }
+});
+
 module.exports = router;
