@@ -42,7 +42,7 @@ router.get("/requestURL", async (request, response) => {
 
     response.json({ redirectURL: authUrl });
   } catch (ex) {
-    console.error("/discord/requestURL/", ex);
+    console.error("/google/requestURL/", ex);
     response.status(500).json({ error: ex });
   }
 });
@@ -51,7 +51,6 @@ router.get("/requestURL", async (request, response) => {
 // console.log("decoded uri ", decodeURIComponent(code));
 router.post("/authcode", async (request, response) => {
   try {
-    console.log("Get auth code discord ", request.body.code);
     if (!(request.body && request.body.code)) {
       throw "You should supply code!";
     }
@@ -59,15 +58,19 @@ router.post("/authcode", async (request, response) => {
       throw "You should supply redirectUrl!";
     }
 
+    console.log("Getted auth code google ", request.body.code);
+    console.log("Getted auth redirect google ", request.body.redirectUrl);
+
     const oauth2Client = new google.auth.OAuth2(
       GOOGLE_CLIENT_ID,
       GOOGLE_CLIENT_SECRET,
-      request.query.redirectUrl
+      request.body.redirectUrl
     );
 
-    console.log("Get google user ", request.body.code);
-    const { tokens } = await oauth2Client.getToken(request.body.code);
-    //console.log("Tokens : ", tokens);
+    let code = decodeURIComponent(request.body.code);
+    console.log("Get google user ", code);
+    const { tokens } = await oauth2Client.getToken(code);
+    console.log("Tokens : ", tokens);
     // Fetch the user's profile with the access token and bearer
     const googleUser = await axios
       .get(
@@ -80,13 +83,14 @@ router.post("/authcode", async (request, response) => {
       )
       .then((res) => res.data)
       .catch((error) => {
+        console.log("");
         throw new Error(error.message);
       });
 
-    console.log("google user data : ", googleUser.data);
-    response.json({ userInfo: googleUser.data, tokenInfo: tokens });
+    console.log("google user data : ", googleUser);
+    response.json({ userInfo: googleUser, tokenInfo: tokens });
   } catch (ex) {
-    console.error("/login/discord ", ex);
+    console.error("/login/google ", ex);
     response.status(500).json({ error: ex });
   }
 });
