@@ -51,6 +51,8 @@ router.post("/authcode", async (request, response) => {
     if (!(request.body && request.body.redirectUrl)) {
       throw "You should supply redirectUrl!";
     }
+    const CLIENT_ID = clientId;
+    const CLIENT_SECRET = clientSecret;
 
     let body = {
       code: request.body.code,
