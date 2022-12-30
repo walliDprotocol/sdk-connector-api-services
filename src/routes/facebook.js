@@ -44,7 +44,9 @@ router.get("/requestURL", async (request, response) => {
 // console.log("decoded uri ", decodeURIComponent(code));
 router.post("/authcode", async (request, response) => {
   try {
-    console.log("Get auth code discord ", request.body.code);
+    console.log("Get facebook code ", request.body.code);
+    console.log("Get facebook redirect ", request.body.redirectUrl);
+
     if (!(request.body && request.body.code)) {
       throw "You should supply code!";
     }

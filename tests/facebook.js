@@ -1,6 +1,7 @@
 const clientId = "";
 const clientSecret = "";
 const redirectUri = "https://sdk-iframe.herokuapp.com/";
+//const redirectUri = "http://localhost:8080/";
 
 // https://medium.com/@jackrobertscott/facebook-auth-with-node-js-c4bb90d03fc0
 const axios = require("axios");
@@ -66,11 +67,13 @@ let getUserTokensAndData = async function (code) {
  *
  */
 
-//getAuthUrl();
+getAuthUrl();
 
 let code =
-  "AQCngdUm7eBEb8W0EylAnwQfcN2qrV2X8UZ1Vfkc30Whe7qftIeQ6Nl95-GVq_sh9zBeQj_18xCWey2PDl042DA7V10PnPcnhEdJNlHHtGTeXpNObej3JSrNbD1JpuDp1DKj-TLcR-fM0L4-0u7APnI8C1cnYV8oZxUzrqXVAdGAi6pu5tOq3iwf88TDGKjLs7MnBNf4-hVhnT-vDEm4nJTFrLNpOJxRI5LRjJe6ArTdbkeE9O48P-ezM30CL3ZwU8AVltc7uV8PPbAiKwV8bA-sbZ4mU55oRU3mosCOLoPR-3QsBZAUOSsUPOM3uOSheg8Y6gF9qQPACmA-KlAmtOr1hzEZATQx2AmfLz05R1NPlLNXFIn6ijpBLRhD08ptT8t0ZYM2qlMIzRaH3Vp6VT7tD3LWyOmJF61AW5hjR9qm4eTtmZqhRYCI8QO7tzSSNE4";
-console.log("code : ", decodeURIComponent(code));
+  "AQD1qvFNThFfj1Two0-_9Uv88lFbjj7Z0PlmD24bihuHig_LCNHpjgg_kBnaCkUS6D5ZtOQ9AiWKcDmO10XHt8bCvCnVfSm9ScXfbTJtyAFzzq-9_xOLFqrRkqkZsxZa0wynVGZ2tsnChRnJYJGLdX1LNppoUfTzlH5aFlf9kJKqYHRXrRvBKgsEMfubS1kR8LQeZJ0aJDM2y2eLavxIlG58mwhY5A2g24RMsm3j7sThgCG3x9OcroKkLkldCWHkCDq0IEOh7Vrg5pi_No6-mU-3jKuo1rJ7jPwZbA0ZUKrIug0jHDLjUTCDvu1QEDgxdZMYCAtnse8nz9YZnlxqyfjsA3wLoGJ0zAgxkGNgL6-TfEnUp-8uWJmDGrGZKlXyBOgZHAs7SlokmttZ-RlRdJBflnIn15K7fUbHkDQjMCHKhg";
+
+//console.log("code : ", decodeURIComponent(code));
+
 async function run() {
   console.log(
     "gihub user ; ",
@@ -78,4 +81,4 @@ async function run() {
   );
 }
 
-run();
+// run();
