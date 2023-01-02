@@ -16,7 +16,7 @@ const clientSecret = process.env.DISCORD_CLIENT_SECRET;
 
 router.get("/requestURL", async (request, response) => {
   let authUrl =
-    "https://discord.com/api/oauth2/authorize?client_id=947877511910527066&redirect_uri=$callback&response_type=code&scope=identify%20guilds";
+    "https://discord.com/api/oauth2/authorize?client_id=947877511910527066&redirect_uri=$callback&response_type=code&scope=identify%20guilds%20email";
 
   try {
     //console.log("Get auth code discord ", request.query);
@@ -24,7 +24,10 @@ router.get("/requestURL", async (request, response) => {
       throw "You should supply redirectUrl!";
     }
 
-    authUrl = authUrl.replace("$callback", request.query.redirectUrl);
+    authUrl = authUrl.replace(
+      "$callback",
+      encodeURIComponent(request.query.redirectUrl)
+    );
     console.log("Auth generate URL : ", authUrl);
     response.json({ redirectURL: authUrl });
   } catch (ex) {
@@ -43,6 +46,9 @@ router.post("/authcode", async (request, response) => {
     if (!(request.body && request.body.code)) {
       throw "You should supply code!";
     }
+    if (!(request.body && request.body.redirectUrl)) {
+      throw "You should supply redirectUrl!";
+    }
 
     const oauthDiscord = "https://discord.com/api/oauth2/token";
 
@@ -50,22 +56,32 @@ router.post("/authcode", async (request, response) => {
       "Content-Type": "application/x-www-form-urlencoded",
     };
 
-    let data = await axios.post(
+    let tokens = await axios.post(
       oauthDiscord,
       querystring.stringify({
         client_id: clientId,
         client_secret: clientSecret,
         grant_type: "authorization_code",
         code: request.body.code,
-        redirect_uri: DISCORD_REDIRECT,
+        redirect_uri: request.body.redirectUrl,
       }),
       {
         headers: headers,
       }
     );
 
+    let tokenInfo = tokens.data;
+
+    //Use the access token to authenticate requests to the GitHub API
+    let { data } = await axios.get(`https://discord.com/api/v9/users/@me`, {
+      headers: {
+        Authorization: `Bearer ${tokenInfo.access_token}`,
+        "User-Agent": "WalliD SDK Request",
+      },
+    });
+
     console.log("Data from discord auth : ", data.data);
-    response.json(data.data);
+    response.json({ userInfo: data, tokenInfo });
   } catch (ex) {
     console.error("/login/discord ", ex);
     response.status(500).json({ error: ex });
