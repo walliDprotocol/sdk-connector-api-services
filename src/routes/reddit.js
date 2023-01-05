@@ -8,8 +8,8 @@ var queryString = require("querystring");
 console.log("reddit clientID: ", process.env.REDDIT_CLIEND_ID);
 console.log("reddit secret: ", process.env.REDDIT_CLIENT_SECRET);
 
-const clientId = process.env.REDDIT_CLIEND_ID;
-const clientSecret = process.env.REDDIT_CLIENT_SECRET;
+let clientId = process.env.REDDIT_CLIEND_ID;
+let clientSecret = process.env.REDDIT_CLIENT_SECRET;
 //const redirectUri = "https://sdk-iframe.herokuapp.com";
 
 /**
@@ -22,6 +22,16 @@ router.get("/requestURL", async (request, response) => {
     //console.log("Get auth code discord ", request.query);
     if (!(request.query && request.query.redirectUrl)) {
       throw "You should supply redirectUrl!";
+    }
+
+    if (
+      !(
+        request.query.redirectUrl.includes("localhost") ||
+        request.query.redirectUrl.includes("127.0.0.1")
+      )
+    ) {
+      console.log("request from prod");
+      clientId = process.env.REDDIT_PROD_CLIENT;
     }
 
     const DURATION = "permanent";
@@ -51,8 +61,19 @@ router.post("/authcode", async (request, response) => {
     if (!(request.body && request.body.redirectUrl)) {
       throw "You should supply redirectUrl!";
     }
-    const CLIENT_ID = clientId;
-    const CLIENT_SECRET = clientSecret;
+    let CLIENT_ID = clientId;
+    let CLIENT_SECRET = clientSecret;
+
+    if (
+      !(
+        request.body.redirectUrl.includes("localhost") ||
+        request.body.redirectUrl.includes("127.0.0.1")
+      )
+    ) {
+      console.log("request from prod");
+      CLIENT_ID = process.env.REDDIT_PROD_CLIENT;
+      CLIENT_SECRET = process.env.REDDIT_PROD_CLIENT_SECRET;
+    }
 
     let body = {
       code: request.body.code,
