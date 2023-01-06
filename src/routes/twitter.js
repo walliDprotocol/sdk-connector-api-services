@@ -3,7 +3,7 @@
 const express = require("express");
 const axios = require("axios");
 const router = new express.Router();
-var queryString = require("querystring");
+const { TwitterApi } = require("twitter-api-v2");
 
 console.log("reddit clientID: ", process.env.REDDIT_CLIEND_ID);
 console.log("reddit secret: ", process.env.REDDIT_CLIENT_SECRET);
@@ -24,7 +24,19 @@ router.get("/requestURL", async (request, response) => {
       throw "You should supply redirectUrl!";
     }
 
-    response.json({ redirectURL: authUrl });
+    const client = new TwitterApi({
+      clientId: process.env.TWITTER_CLIENT_ID,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET,
+    });
+
+    const { url, codeVerifier, state } = client.generateOAuth2AuthLink(
+      process.env.TWITTER_CALLBACK,
+      { scope: ["tweet.read", "users.read", "follows.read", "offline.access"] }
+    );
+    console.log("URL  : ", url);
+    console.log("codeVerifier :   ", codeVerifier);
+    console.log("state  ", state);
+    response.json({ codeVerifier, redirect: url, state });
   } catch (ex) {
     console.error("/reddit/requestURL/", ex);
     response.status(500).json({ error: ex });
@@ -35,15 +47,52 @@ router.get("/requestURL", async (request, response) => {
 // console.log("decoded uri ", decodeURIComponent(code));
 router.post("/authcode", async (request, response) => {
   try {
-    console.log("Get auth code discord ", request.body.code);
-    if (!(request.body && request.body.code)) {
-      throw "You should supply code!";
+    let state = request.body.state;
+    let code = request.body.code;
+    let codeVerifier = request.body.codeVerifier;
+
+    if (!code) {
+      console.error("Should supply twitter code ", code);
+      throw "Should supply twitter code";
     }
-    if (!(request.body && request.body.redirectUrl)) {
-      throw "You should supply redirectUrl!";
+    if (!codeVerifier) {
+      console.error("Should supply twitter codeVerifier ", codeVerifier);
+      throw "Should supply twitter codeVerifier";
     }
 
-    response.json({ userInfo: userData.data, tokenInfo: tokenInfo });
+    const client = new TwitterApi({
+      clientId: process.env.TWITTER_CLIENT_ID,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET,
+    });
+
+    const {
+      client: loggedClient,
+      accessToken,
+      refreshToken,
+      //   expiresIn,
+    } = await client.loginWithOAuth2({
+      code,
+      codeVerifier,
+      redirectUri: process.env.TWITTER_CALLBACK,
+    });
+
+    // {loggedClient} is an authenticated client in behalf of some user
+    // Store {accessToken} somewhere, it will be valid until {expiresIn} is hit.
+    // If you want to refresh your token later, store {refreshToken} (it is present if 'offline.access' has been given as scope)
+
+    console.log("accessToken : ", accessToken);
+    console.log("refreshToken : ", refreshToken);
+
+    // Example request
+    const { data: userObject } = await loggedClient.v2.me();
+    console.log("user data : ", userObject);
+    response.json({
+      accessToken,
+      refreshToken,
+      username: userObject.username,
+      name: userObject.name,
+      id: userObject.id,
+    });
   } catch (ex) {
     console.error("/login/reddit ", ex);
     response.status(500).json({ error: ex });
