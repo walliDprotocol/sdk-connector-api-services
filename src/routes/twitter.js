@@ -36,7 +36,7 @@ router.get("/requestURL", async (request, response) => {
     console.log("URL  : ", url);
     console.log("codeVerifier :   ", codeVerifier);
     console.log("state  ", state);
-    response.json({ codeVerifier, redirect: url, state });
+    response.json({ codeVerifier, redirectURL: url, state });
   } catch (ex) {
     console.error("/reddit/requestURL/", ex);
     response.status(500).json({ error: ex });
@@ -85,13 +85,12 @@ router.post("/authcode", async (request, response) => {
 
     // Example request
     const { data: userObject } = await loggedClient.v2.me();
+
     console.log("user data : ", userObject);
+
     response.json({
-      accessToken,
-      refreshToken,
-      username: userObject.username,
-      name: userObject.name,
-      id: userObject.id,
+      userInfo: userObject,
+      tokenInfo: { refreshToken, accessToken },
     });
   } catch (ex) {
     console.error("/login/reddit ", ex);
