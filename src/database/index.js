@@ -25,7 +25,7 @@ if (!config.databaseURL) {
 logDebug("MONGO URI CONNECTED :  ", config.databaseURL);
 let Mongo = {};
 
-if (process.env.DB_USER && process.env.DB_USERL.length > 2) {
+if (process.env.DB_USER && process.env.DB_USER.length > 2) {
   Mongo = startMongo(config.databaseURL);
 } else {
   console.log("No MONGODB config");
@@ -35,6 +35,23 @@ const Redis = startRedis(config.redisUrl);
 const RedisSubscribe = startRedis(config.redisUrl);
 
 const Database = {
+  createConfig: async (data, options) => {
+    return await Mongo.config.create(data, options);
+  },
+  updateConfig: async (criteria, update, options) => {
+    return await Mongo.config.findOneAndUpdate(criteria, update, options);
+  },
+  findConfig: async (filter, select, options) => {
+    return await Mongo.config.find(filter, select, options);
+  },
+
+  createWorkSpace: async (data, options) => {
+    return await Mongo.workspace.create(data, options);
+  },
+  findWorkspace: async (filter, select, options) => {
+    return await Mongo.workspace.find(filter, select, options);
+  },
+
   saveWalletMySQL: async (wallet) => {
     let insertInto = "INSERT INTO user_wallet (wa) VALUES ('" + wallet + "')";
     let res = await MySqlInstance.query(insertInto);
