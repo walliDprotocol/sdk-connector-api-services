@@ -30,7 +30,8 @@ router.get("/requestURL", async (request, response) => {
     });
 
     const { url, codeVerifier, state } = client.generateOAuth2AuthLink(
-      process.env.TWITTER_CALLBACK,
+      //process.env.TWITTER_CALLBACK,
+      request.query.redirectUrl,
       { scope: ["tweet.read", "users.read", "follows.read", "offline.access"] }
     );
     console.log("URL  : ", url);
