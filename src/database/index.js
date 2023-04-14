@@ -25,7 +25,7 @@ if (!config.databaseURL) {
 logDebug("MONGO URI CONNECTED :  ", config.databaseURL);
 let Mongo = {};
 
-if (process.env.DB_USER && process.env.DB_USERL.length > 2) {
+if (process.env.DB_USER && process.env.DB_USER.length > 2) {
   Mongo = startMongo(config.databaseURL);
 } else {
   console.log("No MONGODB config");

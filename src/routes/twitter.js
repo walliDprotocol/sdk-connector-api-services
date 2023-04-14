@@ -5,12 +5,11 @@ const axios = require("axios");
 const router = new express.Router();
 const { TwitterApi } = require("twitter-api-v2");
 
-console.log("reddit clientID: ", process.env.REDDIT_CLIEND_ID);
-console.log("reddit secret: ", process.env.REDDIT_CLIENT_SECRET);
-
-const clientId = process.env.REDDIT_CLIEND_ID;
-const clientSecret = process.env.REDDIT_CLIENT_SECRET;
+const clientId = process.env.TWITTER_CLIENT_ID;
+const clientSecret = process.env.TWITTER_CLIENT_SECRET;
 //const redirectUri = "https://sdk-iframe.herokuapp.com";
+console.log("Twitter clientID: ", clientId);
+console.log("Twitter secret: ", clientSecret);
 
 /**
  * Samples
@@ -25,8 +24,8 @@ router.get("/requestURL", async (request, response) => {
     }
 
     const client = new TwitterApi({
-      clientId: process.env.TWITTER_CLIENT_ID,
-      clientSecret: process.env.TWITTER_CLIENT_SECRET,
+      clientId: clientId,
+      clientSecret: clientSecret,
     });
 
     const { url, codeVerifier, state } = client.generateOAuth2AuthLink(
