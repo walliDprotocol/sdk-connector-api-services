@@ -59,10 +59,6 @@ router.post("/authcode", async (request, response) => {
       console.error("Should supply twitter codeVerifier ", codeVerifier);
       throw "Should supply twitter codeVerifier";
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> milestone#2
     if (!(request.body && request.body.redirectUrl)) {
       throw "You should supply redirectUrl!";
     }
