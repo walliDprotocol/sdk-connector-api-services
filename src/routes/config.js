@@ -6,7 +6,13 @@ const router = new express.Router();
 const { TwitterApi } = require("twitter-api-v2");
 const validator = require("$core-services/parameterValidator");
 
-const CREATE_PARAMTERS = ["workspaceId", "type", "name", "providers"];
+const CREATE_PARAMTERS = [
+  "workspaceId",
+  "type",
+  "IdName",
+  "IdNameDesc",
+  "providers",
+];
 const LIST = ["workspaceId"];
 
 const {
@@ -89,10 +95,10 @@ router.post("/update", async (request, response) => {
 
 router.get("/list", async (request, response) => {
   try {
-    console.log("List config for workspace ", request.body);
+    console.log("List config for workspace ", request.query);
 
-    const { body } = validator(request.body, LIST);
-    let data = await listConfig(request.body);
+    const { body } = validator(request.query, LIST);
+    let data = await listConfig(request.query, null, null);
 
     response.json({ data });
   } catch (ex) {

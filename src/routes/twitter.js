@@ -59,6 +59,9 @@ router.post("/authcode", async (request, response) => {
       console.error("Should supply twitter codeVerifier ", codeVerifier);
       throw "Should supply twitter codeVerifier";
     }
+    if (!(request.body && request.body.redirectUrl)) {
+      throw "You should supply redirectUrl!";
+    }
 
     const client = new TwitterApi({
       clientId: process.env.TWITTER_CLIENT_ID,
@@ -73,7 +76,7 @@ router.post("/authcode", async (request, response) => {
     } = await client.loginWithOAuth2({
       code,
       codeVerifier,
-      redirectUri: process.env.TWITTER_CALLBACK,
+      redirectUri: request.body.redirectUrl,
     });
 
     // {loggedClient} is an authenticated client in behalf of some user
