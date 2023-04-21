@@ -14,7 +14,15 @@ const ConfigSchema = new Schema(
     displayName: String,
     providers: [
       {
-        name: {
+        IdNameDesc: {
+          type: String,
+          required: false,
+        },
+        options: {
+          type: {},
+          required: true,
+        },
+        IdName: {
           type: String,
           enum: Providers,
           required: true,

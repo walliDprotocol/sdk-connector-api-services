@@ -1,0 +1,204 @@
+{
+    "nearTokens" : {
+        "IdName": "nearTokens",
+        "IdNameDesc": "Near tokens",
+        "IdDescription": "Verify a NEAR ERC20 Token",
+        "type": "web3",
+        "contractType": "native",
+        "options": [
+          {
+            "code"  : 1,
+            "field": "Near possessions",
+            "description": ["Positive balance"],
+            "value": 0,
+            "state": false
+          }
+        ]
+    },
+    "nearNFT":{
+        "IdName": "nearNFT",
+        "IdNameDesc": "Near NFT's",
+        "IdDescription": "Verify a NEAR NFT",
+        "type": "web3",
+        "options": [
+          {
+            "code"  : 1,
+            "field": "NEAR NFT Holder",
+            "description": ["Holds at least 1 NFT"],
+            "state": false
+          }
+        ]
+      },
+      "usdcToken":{
+        "IdName": "usdcToken",
+        "IdNameDesc": "USDC Token",
+        "imgType": "url",
+        "imgUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png",
+        "IdDescription": "Verify USDC Tokens",
+        "type": "web3",
+        "contractType": "ERC20",
+        "contractAddress": "a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near",
+        "options": [
+          {
+            "code"  : 1,
+            "field": "USDC possessions",
+            "type": "balance",
+            "description": ["Positive balance"],
+            "value": 0,
+            "state": false
+          }
+        ]
+      },
+      "google" : {
+        "IdName": "google",
+        "IdNameDesc": "Google",
+        "type": "web2",
+        "options": [
+          {
+            "code"  : 1,
+            "field": "Email account",
+            "description": ["Google"],
+            "state": false
+          }
+        ]
+      },
+    "twitter":{
+      "type": "web2",
+      "options": [
+        {
+          "code" : 1,
+          "field": "Account name",
+          "description": ["(Encrypted)"],
+          "state": false
+        },
+        {
+         "code" : 2,
+          "field": "Tweets",
+          "description": ["• More than 10"],
+          "state": false
+        },
+        {
+          "code" : 3,
+          "field": "Followers",
+          "description": ["• More than 100", "• More than 1000"],
+          "state": false
+        }
+      ]
+    },
+    "facebook" : {
+        "IdName": "facebook",
+        "IdNameDesc": "Facebook",
+        "type": "web2",
+        "options": [
+          {
+            "code" : 1,
+            "field": "Account name",
+            "description": ["(Encrypted)"],
+            "state": false
+          },
+          {
+            "code" : 2,
+            "field": "Friends",
+            "description": ["Greater then 100"],
+            "state": false
+          },
+          {
+            "code" : 3,
+            "field": "Profile",
+            "description": ["Profile Picture attached"],
+            "state": false
+          }
+        ]
+      },
+      "linkedin": {
+        "IdName": "linkedin",
+        "IdNameDesc": "Linkedin",
+        "type": "web2",
+        "options": [
+            {
+            "code" : 1,
+            "field": "Account name",
+            "description": ["(Encrypted)"],
+            "state": false
+            }
+        ]
+    },
+    "discord": {
+        "IdName": "discord",
+        "IdNameDesc": "Discord",
+        "type": "web2",
+        "options": [
+            {
+            "code" : 1,
+            "field": "Account name",
+            "description": ["(Encrypted)"],
+            "state": false
+            }
+        ]
+    },
+    "reddit": {
+        "IdName": "reddit",
+        "IdNameDesc": "Reddit",
+        "type": "web2",
+        "options": [
+          {
+            "code" : 1,
+            "field": "Account name",
+            "description": ["(Encrypted)"],
+            "state": false
+          },
+          {
+            "code" : 2,
+            "field": "Karma",
+            "description": [
+              "At least 10 Post Karma",
+              "At least 2 comment Karma",
+              "At least 2 Awardee Karma"
+            ],
+            "state": false
+          },
+          {
+            "code" : 3,
+            "field": "Followers",
+            "description": [
+              "Ten or more Reddit followers",
+              "Fifty or more Reddit followers"
+            ],
+            "state": false
+          }
+        ]
+      },
+      "github" : {
+        "IdName": "github",
+        "IdNameDesc": "Github",
+        "type": "web2",
+        "options": [
+          {
+            "code" : 1,
+            "field": "Account name",
+            "description": ["(Encrypted)"],
+            "state": false
+          },
+          {
+            "code" : 2,
+            "field": "Repositories",
+            "description": [
+              "Five or more Githubs repos",
+              "At least 1 Github repo forked by another user",
+              "At least 1 Github repo starred by another user"
+            ],
+            "state": false
+          },
+          {
+            "code" : 3,
+            "field": "Followers",
+            "description": [
+              "Ten more Github followers",
+              "Fifty or more Github followers"
+            ],
+            "state": false
+          }
+        ]
+      }
+        
+}

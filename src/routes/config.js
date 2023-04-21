@@ -9,11 +9,12 @@ const validator = require("$core-services/parameterValidator");
 const CREATE_PARAMTERS = [
   "workspaceId",
   "type",
-  "IdName",
-  "IdNameDesc",
+  "name",
+  "displayName",
   "providers",
 ];
 const LIST = ["workspaceId"];
+const GET = ["configId"];
 
 const {
   createConfig,
@@ -103,6 +104,20 @@ router.get("/list", async (request, response) => {
     response.json({ data });
   } catch (ex) {
     console.error("/list/config ", ex);
+    response.status(500).json({ error: ex });
+  }
+});
+
+router.get("/get", async (request, response) => {
+  try {
+    console.log("List specific config ", request.query);
+
+    const { body } = validator(request.query, GET);
+    let data = await listConfig({ _id: request.query.configId }, null, null);
+
+    response.json({ data });
+  } catch (ex) {
+    console.error("//config/get", ex);
     response.status(500).json({ error: ex });
   }
 });

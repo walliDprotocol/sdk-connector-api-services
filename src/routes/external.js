@@ -10,7 +10,7 @@ router.get("/getConfig", async (request, response) => {
 
   response.status(200).json({
     nft_id: "87987999",
-    workspaceId: "643963997c5c847a2c875841",
+    configId: "6442a455cbffdd273b266f06",
   });
 });
 
@@ -23,7 +23,7 @@ router.get("/getNftInfo", async (request, response) => {
     nft_id: request.query.nft_id,
     createdDate: "01-01-2023",
     createdBy: "0x13123142",
-    walliDConfig: "643963997c5c847a2c875841",
+    walliDConfig: "6442a455cbffdd273b266f06",
     owners: [
       {
         social_handler: {
