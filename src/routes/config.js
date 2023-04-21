@@ -108,7 +108,7 @@ router.get("/list", async (request, response) => {
   }
 });
 
-router.get("/get", async (request, response) => {
+router.get("/byId", async (request, response) => {
   try {
     console.log("List specific config ", request.query);
 
