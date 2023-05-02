@@ -29,17 +29,33 @@ router.get("/getNftInfo", async (request, response) => {
         social_handler: {
           type: "twitter",
           username: "_o_ruivo_",
-          HoldingPosition: 90,
+          HoldingPosition: 80,
         },
         implicitAccount: "0x131312412412412",
       },
       {
         social_handler: {
           type: "twitter",
-          username: "microchipgnu",
+          username: "CryptoVeiga",
           HoldingPosition: 10,
         },
-        implicitAccount: "0x131312412412412",
+        implicitAccount: "0x131312412412413",
+      },
+      {
+        social_handler: {
+          type: "twitter",
+          username: "microchipgnu",
+          HoldingPosition: 5,
+        },
+        implicitAccount: "0x131312412412413",
+      },
+      {
+        social_handler: {
+          type: "twitter",
+          username: "Beatriz26818816",
+          HoldingPosition: 5,
+        },
+        implicitAccount: "0x131312412412414",
       },
     ],
   });
