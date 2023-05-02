@@ -36,7 +36,7 @@ router.get("/getNftInfo", async (request, response) => {
       {
         social_handler: {
           type: "twitter",
-          username: "CryptoVeiga",
+          username: "@microchipgnu",
           HoldingPosition: 10,
         },
         implicitAccount: "0x131312412412412",
