@@ -13,7 +13,7 @@ After an NFT is created, it contains information regarding the holder of the NFT
 ```json
 {
     "nft_id": "nft id",
-    "twitter_account_id": "twitter id after user authenticates on twitter" // 
+    "twitter_account_id": "twitter id after user authenticates on twitter"
 ```
 
 **Response Example**
@@ -30,7 +30,7 @@ After an NFT is created, it contains information regarding the holder of the NFT
         social_handler: {
           type: "twitter",
           username: "masterviana",
-          HoldingPosition: 80,
+          HoldingPosition: 80
         },
         implicitAccountAddress: "0x131312412412412",
         "accountId: "id of the account",
