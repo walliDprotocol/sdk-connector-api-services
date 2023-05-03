@@ -1,5 +1,47 @@
 # Verification-connector
 
+
+## Routes
+
+### GET /getNftInfo
+
+After an NFT is created, it contains information regarding the holder of the NFT, the percentage of ownership, and details about the NEAR account associated with it.
+
+
+**Request Body**
+
+```json
+{
+    "nft_id": "nft id", //
+    "twitter_account_id": "twitter id after user authenticates on twitter" // 
+```
+
+**Response Example**
+
+```json
+
+{
+    nft_id: "0x10",
+    createdDate: "01-01-2023",
+    createdBy: "0x13123142",
+    walliDConfig: "6442a455cbffdd273b266f06",
+    owners: [
+      {
+        social_handler: {
+          type: "twitter",
+          username: "masterviana",
+          HoldingPosition: 80,
+        },
+        implicitAccountAddress: "0x131312412412412",
+        "accountId: "id of the account",
+        "seedPhrase" : "?????"    
+      }
+     }
+}
+
+```
+
+
 ## environment variables
 
 For using on a develeopment environment it using `dotenv` module so you could use a .env file to add the following env vars
