@@ -19,7 +19,6 @@ After an NFT is created, it contains information regarding the holder of the NFT
 **Response Example**
 
 ```json
-
 {
     nft_id: "0x10",
     createdDate: "01-01-2023",
@@ -33,12 +32,11 @@ After an NFT is created, it contains information regarding the holder of the NFT
           HoldingPosition: 80
         },
         implicitAccountAddress: "0x131312412412412",
-        "accountId: "id of the account",
+        "accountId" : "id of the account",
         "seedPhrase" : "?????"    
       }
      }
 }
-
 ```
 
 
