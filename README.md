@@ -35,7 +35,6 @@ After an NFT is created, it contains information regarding the holder of the NFT
         "accountId" : "id of the account",
         "seedPhrase" : "?????"    
       }
-     }
 }
 ```
 
