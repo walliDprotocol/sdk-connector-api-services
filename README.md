@@ -12,7 +12,7 @@ After an NFT is created, it contains information regarding the holder of the NFT
 
 ```json
 {
-    "nft_id": "nft id", //
+    "nft_id": "nft id",
     "twitter_account_id": "twitter id after user authenticates on twitter" // 
 ```
 
