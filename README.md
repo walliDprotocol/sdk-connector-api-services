@@ -20,18 +20,18 @@ After an NFT is created, it contains information regarding the holder of the NFT
 
 ```json
 {
-    nft_id: "0x10",
-    createdDate: "01-01-2023",
-    createdBy: "0x13123142",
-    walliDConfig: "6442a455cbffdd273b266f06",
-    owners: [
+    "nft_id": "0x10",
+    "createdDate": "01-01-2023",
+    "createdBy": "0x13123142",
+    "walliDConfig": "6442a455cbffdd273b266f06",
+    "owners": [
       {
-        social_handler: {
-          type: "twitter",
-          username: "masterviana",
-          HoldingPosition: 80
+        "social_handler": {
+          "type": "twitter",
+          "username": "masterviana",
+          "HoldingPosition": 80
         },
-        implicitAccountAddress: "0x131312412412412",
+        "implicitAccountAddress": "0x131312412412412",
         "accountId" : "id of the account",
         "seedPhrase" : "?????"    
       }
