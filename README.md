@@ -34,7 +34,8 @@ After an NFT is created, it contains information regarding the holder of the NFT
         "implicitAccountAddress": "0x131312412412412",
         "accountId" : "id of the account",
         "seedPhrase" : "?????"    
-      }
+    }
+   ]
 }
 ```
 
