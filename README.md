@@ -1,7 +1,42 @@
 # Verification-connector
 
-
 ## Routes
+
+### POST /api/v1/social-profile/twitter
+
+
+
+**Request Body**
+
+```json
+{
+    "username": "<twitter_username>"
+```
+
+**Response Example**
+
+```json
+{
+    "message": "",
+    "data": {
+        "error": false,
+        //data object contain info about the twitter and also about the user
+        "data": {
+         "id": "id of the post",
+         "text": "post text",
+         "created_at" : "date of post",
+          "user": {
+                "id": "twitter_id",
+                "id_str": "twitter id",
+                "name": Name",
+                "screen_name": "username"
+            },
+            
+           
+            
+        }
+}
+```
 
 ### GET /getNftInfo
 
