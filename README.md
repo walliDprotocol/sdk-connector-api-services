@@ -23,7 +23,6 @@ By accessing this route and supplying the relevant username, you can retrieve th
     "message": "",
     "data": {
         "error": false,
-        //data object contain info about the twitter and also about the user
         "data": {
          "id": "id of the post",
          "text": "post text",
