@@ -30,7 +30,7 @@ By accessing this route and supplying the relevant username, you can retrieve th
           "user": {
                 "id": "twitter_id",
                 "id_str": "twitter id",
-                "name": Name",
+                "name": "Name",
                 "screen_name": "username"
             },
             
