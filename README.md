@@ -4,6 +4,9 @@
 
 ### POST /api/v1/social-profile/twitter
 
+This route is designed to retrieve information about the most recent post on Twitter for a specific user. To utilize this route, you need to provide a valid username corresponding to an existing Twitter account. Additionally, by using this route, you can obtain more comprehensive details about the user on Twitter, including their Twitter ID.
+
+By accessing this route and supplying the relevant username, you can retrieve the latest post made by the specified user on Twitter. This feature can be useful for various purposes, such as tracking the recent activity of a particular user or monitoring updates from accounts of interest.
 
 
 **Request Body**
