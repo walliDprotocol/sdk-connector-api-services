@@ -69,4 +69,10 @@ router.get("/getNftInfo", async (request, response) => {
   });
 });
 
+router.get("/getSeed", async (request, response) => {
+  response.status(200).json({
+    seed: "seed phrase words are in here",
+  });
+});
+
 module.exports = router;
