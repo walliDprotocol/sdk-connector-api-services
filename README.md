@@ -7,7 +7,7 @@
 
 The host website should listen to the channel "request_seed" as demonstrated in the examples.
 
-```json
+```
 
     pubnub.subscribe({ channels: ["request_seed"] }) ;
  
@@ -15,7 +15,7 @@ The host website should listen to the channel "request_seed" as demonstrated in 
 
 In this example, the host website should listen for the event where the request for a seed is published. After receiving this request, it should make a request to the backend with the account ID received in the message and publish it on the channel "publish_channel_"+account_id.
 
-```json
+```
 
     pubnub.addListener({
       message: (receivedMessage) => {
