@@ -4,7 +4,10 @@
 ## Event Interaction Between Iframe and Host
 
 
-![Alt text](/uploads/schema_iframe_host.png "Optional title" width=100)
+<div>
+<a href="url"><img src="https://github.com/walliDprotocol/verification-sdk-connector-api/blob/main/uploads/schema_iframe_host.png" align="left" height="300" width="300" ></a>
+</div>
+<br>
 
 The host website should listen to the channel "request_seed" as demonstrated in the examples.
 
