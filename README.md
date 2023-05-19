@@ -1,5 +1,12 @@
 # Verification-connector
 
+
+## Event Interaction Between Iframe and Host
+
+[[/uploads/schema_iframe_host.png|Realtime events]]
+
+
+
 ## Routes
 
 ### POST /api/v1/social-profile/twitter
