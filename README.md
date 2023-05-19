@@ -1,5 +1,82 @@
 # Verification-connector
 
+## Routes
+
+### POST /api/v1/social-profile/twitter
+
+This route is designed to retrieve information about the most recent post on Twitter for a specific user. To utilize this route, you need to provide a valid username corresponding to an existing Twitter account. Additionally, by using this route, you can obtain more comprehensive details about the user on Twitter, including their Twitter ID.
+
+By accessing this route and supplying the relevant username, you can retrieve the latest post made by the specified user on Twitter. This feature can be useful for various purposes, such as tracking the recent activity of a particular user or monitoring updates from accounts of interest.
+
+
+**Request Body**
+
+```json
+{
+    "username": "<twitter_username>"
+```
+
+**Response Example**
+
+```json
+{
+    "message": "",
+    "data": {
+        "error": false,
+        "data": {
+         "id": "id of the post",
+         "text": "post text",
+         "created_at" : "date of post",
+          "user": {
+                "id": "twitter_id",
+                "id_str": "twitter id",
+                "name": "Name",
+                "screen_name": "username"
+            },
+            
+           
+            
+        }
+}
+```
+
+### GET /getNftInfo
+
+After an NFT is created, it contains information regarding the holder of the NFT, the percentage of ownership, and details about the NEAR account associated with it.
+
+
+**Request Body**
+
+```json
+{
+    "nft_id": "nft id",
+    "twitter_account_id": "twitter id after user authenticates on twitter"
+```
+
+**Response Example**
+
+```json
+{
+    "nft_id": "0x10",
+    "createdDate": "01-01-2023",
+    "createdBy": "0x13123142",
+    "walliDConfig": "6442a455cbffdd273b266f06",
+    "owners": [
+      {
+        "social_handler": {
+          "type": "twitter",
+          "username": "masterviana",
+          "HoldingPosition": 80
+        },
+        "implicitAccountAddress": "0x131312412412412",
+        "accountId" : "id of the account",
+        "seedPhrase" : "?????"    
+    }
+   ]
+}
+```
+
+
 ## environment variables
 
 For using on a develeopment environment it using `dotenv` module so you could use a .env file to add the following env vars
