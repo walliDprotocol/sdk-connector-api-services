@@ -4,7 +4,7 @@
 ## Event Interaction Between Iframe and Host
 
 
-![Alt text](/uploads/schema_iframe_host.png "Optional title")
+![Alt text](/uploads/schema_iframe_host.png "Optional title" width=100)
 
 The host website should listen to the channel "request_seed" as demonstrated in the examples.
 
