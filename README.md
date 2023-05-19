@@ -3,7 +3,7 @@
 
 ## Event Interaction Between Iframe and Host
 
-[[/uploads/schema_iframe_host.png|Realtime events]]
+[[/https://github.com/walliDprotocol/verification-sdk-connector-api/blob/main/uploads/schema_iframe_host.png|ALT TEXT]]
 
 
 
