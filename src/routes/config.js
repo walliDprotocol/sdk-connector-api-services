@@ -118,7 +118,7 @@ router.get("/byId", async (request, response) => {
       data = data[0];
     }
 
-    response.json({ data });
+    response.json(data);
   } catch (ex) {
     console.error("//config/get", ex);
     response.status(500).json({ error: ex });

@@ -65,7 +65,11 @@ let updateConfig = async function (id, updateBody) {
 
 let listConfig = async function (criteria) {
   try {
-    let queryData = await Data.findConfig(criteria, null, null);
+    let queryData = await Data.findConfig(
+      criteria,
+      { "providers.clientSecret": 0, "providers.clientId": 0 },
+      null
+    );
     return queryData;
   } catch (ex) {
     console.log("List configuration ", ex);
