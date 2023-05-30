@@ -114,6 +114,9 @@ router.get("/byId", async (request, response) => {
 
     const { body } = validator(request.query, GET);
     let data = await listConfig({ _id: request.query.configId }, null, null);
+    if (data.length > 0) {
+      data = data[0];
+    }
 
     response.json({ data });
   } catch (ex) {
