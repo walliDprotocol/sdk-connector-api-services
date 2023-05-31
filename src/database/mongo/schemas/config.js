@@ -12,6 +12,8 @@ const ConfigSchema = new Schema(
       type: String,
     },
     displayName: String,
+    chainId: String,
+    rpc: String,
     providers: [
       {
         IdNameDesc: {
@@ -24,7 +26,7 @@ const ConfigSchema = new Schema(
         },
         IdName: {
           type: String,
-          enum: Providers,
+
           required: true,
         },
         type: {
@@ -40,6 +42,8 @@ const ConfigSchema = new Schema(
           type: String,
           required: true,
         },
+        contractAddress: String,
+        contractType: String,
         redirectUrl: String,
       },
     ],
