@@ -111,6 +111,9 @@ router.get("/list", async (request, response) => {
 router.get("/byId", async (request, response) => {
   try {
     console.log("List specific config ", request.query);
+    if (!request.query.configId) {
+      throw "ConfigId should be passed!";
+    }
 
     const { body } = validator(request.query, GET);
     let data = await listConfig({ _id: request.query.configId }, null, null);

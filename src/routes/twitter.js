@@ -18,6 +18,7 @@ console.log("Twitter secret: ", clientSecret);
  */
 router.get("/requestURL", async (request, response) => {
   try {
+    console.log("Request URL :  ", request.query);
     //console.log("Get auth code discord ", request.query);
     if (!(request.query && request.query.redirectUrl)) {
       throw "You should supply redirectUrl!";
@@ -47,6 +48,8 @@ router.get("/requestURL", async (request, response) => {
 // console.log("decoded uri ", decodeURIComponent(code));
 router.post("/authcode", async (request, response) => {
   try {
+    console.log("authcode body :  ", request.body);
+
     let state = request.body.state;
     let code = request.body.code;
     let codeVerifier = request.body.codeVerifier;
